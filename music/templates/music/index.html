@@ -1,0 +1,10 @@
+{% extends "music/layout.html" %}
+{% block content %}
+    {% for album in all_albums  %}
+    <li>
+        <a href="{% url 'music:detail' album.id %}">
+            {{ album.album_title }} - {{ album.artist }}
+        </a>
+    </li>
+    {% endfor %}
+{% endblock %}
