@@ -5,6 +5,14 @@
         <a href="{% url 'music:detail' album.id %}">
             {{ album.album_title }} - {{ album.artist }}
         </a>
+        -
+        <a href="{% url 'music:album-update' album.id %}" class="btn btn-xs btn-info">Edit</a>
+
+        <form class="" action="{% url 'music:album-delete' album.id %}" method="post">
+            {% csrf_token %}
+            <input type="hidden" name="album_id" value="{{ album.id }}">
+            <input type="submit" class="btn btn-xs btn-danger" name="" value="Delete">
+        </form>
     </li>
     {% endfor %}
 {% endblock %}
