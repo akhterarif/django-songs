@@ -8,23 +8,17 @@
 
     {# songs list #}
     {% if album.song_set.all  %}
-        <form action="{% url 'music:favourite' album.id %}" method="post">
-            {% csrf_token %}
-            {#songs list #}
-            {% for song in album.song_set.all %}
-                <input type="radio" id="song_{{ forloop.counter }}" name="song" value="{{song.id}}">
+        {#songs list #}
+        {% for song in album.song_set.all %}
+            <label for="song_{{ forloop.counter }}">
+                {{ song.song_title }}
 
-                <label for="song_{{ forloop.counter }}">
-                    {{ song.song_title }}
-
-                    {#if is favourite make a star #}
-                    {% if song.is_favourite %}
-                        <strong>*</strong>
-                    {% endif %}
-                </label><br>
-            {% endfor %}
-            <input type="submit" name="submit" value="Make Fav">
-        </form>
+                {#if is favourite make a star #}
+                {% if song.is_favourite %}
+                    <strong>*</strong>
+                {% endif %}
+            </label><br>
+        {% endfor %}
     {% else %}
         There is no song in this album
     {% endif %}
